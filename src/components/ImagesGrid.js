@@ -17,7 +17,6 @@ const ImagesGrid = () => {
     const results = await response.json();
 
     setDataLength(count * pageParam);
-    console.log(likedImages);
 
     return { results, nextPage: pageParam + 1 };
   };

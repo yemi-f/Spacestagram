@@ -36,7 +36,7 @@ const ImageCard = ({ image, updateLikedImages }) => {
           </div>
         </div>
         <Card.Title className="h6">{image.title}</Card.Title>
-        <Row onClick={toggleCollapse} style={{ cursor: "pointer" }}>
+        <Row>
           <div className={collapse ? "text-truncate" : ""}>
             {image.explanation}
           </div>

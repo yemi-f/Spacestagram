@@ -6,7 +6,6 @@ import { Container, Spinner } from "react-bootstrap";
 
 const ImagesGrid = () => {
   const [dataLength, setDataLength] = useState(10);
-  const [likedImages, setLikedImages] = useState([]);
 
   const fetchPhotos = async ({ pageParam = 1 }) => {
     const count = 10;
@@ -20,11 +19,6 @@ const ImagesGrid = () => {
 
     return { results, nextPage: pageParam + 1 };
   };
-
-  const updateLikedImages = (id) => {
-    setLikedImages([...likedImages, id]);
-  };
-
   const { data, error, fetchNextPage, hasNextPage, status } = useInfiniteQuery(
     "photos",
     fetchPhotos,
@@ -51,11 +45,7 @@ const ImagesGrid = () => {
           {data.pages.map((group, i) => (
             <React.Fragment key={i}>
               {group.results.map((image) => (
-                <ImageCard
-                  key={image.url}
-                  image={image}
-                  updateLikedImages={updateLikedImages}
-                />
+                <ImageCard key={image.url} image={image} />
               ))}
             </React.Fragment>
           ))}

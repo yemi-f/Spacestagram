@@ -3,13 +3,12 @@ import { Card, Row } from "react-bootstrap";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useSpring, animated } from "@react-spring/web";
 
-const ImageCard = ({ image, updateLikedImages }) => {
+const ImageCard = ({ image }) => {
   const [liked, setLiked] = useState(false);
   const [collapse, setCollapse] = useState(true);
 
   const handleBtnClick = (url) => {
     setLiked(!liked);
-    updateLikedImages(url);
   };
 
   const toggleCollapse = () => {

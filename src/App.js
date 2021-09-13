@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import ImagesGrid from "./components/ImagesGrid";
+import { Container, Navbar } from "react-bootstrap";
+import { QueryClient, QueryClientProvider } from "react-query";
+const twentyFourHoursInMs = 1000 * 60 * 60 * 24;
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnmount: false,
+      refetchOnReconnect: false,
+      retry: false,
+      staleTime: twentyFourHoursInMs,
+    },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <Navbar bg="light" fixed="top">
+        <Container>
+          <Navbar.Brand>Spacestagram</Navbar.Brand>
+        </Container>
+      </Navbar>
+      <ImagesGrid />
+    </QueryClientProvider>
   );
 }
 

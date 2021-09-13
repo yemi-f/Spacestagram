@@ -7,7 +7,7 @@ const ImageCard = ({ image }) => {
   const [liked, setLiked] = useState(false);
   const [collapse, setCollapse] = useState(true);
 
-  const handleBtnClick = (url) => {
+  const handleBtnClick = () => {
     setLiked(!liked);
   };
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Card, Row } from "react-bootstrap";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { useSpring, animated } from "@react-spring/web";
 
 const ImageCard = ({ image, updateLikedImages }) => {
   const [liked, setLiked] = useState(false);
@@ -27,11 +28,7 @@ const ImageCard = ({ image, updateLikedImages }) => {
               onClick={() => handleBtnClick(image.url)}
               style={{ cursor: "pointer" }}
             >
-              {liked ? (
-                <FaHeart color="#ED4956" size="24px" />
-              ) : (
-                <FaRegHeart size="24px" />
-              )}
+              <AnimatedLikeButton liked={liked} />
             </span>
           </div>
           <div>
@@ -53,6 +50,29 @@ const ImageCard = ({ image, updateLikedImages }) => {
         </Card.Text>
       </Card.Body>
     </Card>
+  );
+};
+const AnimatedLikeButton = ({ liked }) => {
+  const spring = useSpring({ x: liked ? 1 : 0 });
+
+  return (
+    <animated.div
+      style={{
+        transform: spring.x
+          .to({
+            range: [0, 0.5, 1],
+            output: [1, 1.25, 1],
+          })
+          .to((x) => `scale(${x})`),
+      }}
+      children={
+        liked ? (
+          <FaHeart color="#ED4956" size="24px" />
+        ) : (
+          <FaRegHeart size="24px" />
+        )
+      }
+    />
   );
 };
 

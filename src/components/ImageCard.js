@@ -74,7 +74,12 @@ const AnimatedLikeButton = ({ liked, handleBtnClick, removeFocusOnClick }) => {
             variant="link"
             className="ps-0 py-0 border-0"
           >
-            <FaHeart color="#ED4956" size="24px" aria-label="Unlike" />
+            <FaHeart
+              color="#ED4956"
+              size="24px"
+              aria-label="Unlike"
+              role="img"
+            />
           </Button>
         ) : (
           <Button
@@ -82,7 +87,7 @@ const AnimatedLikeButton = ({ liked, handleBtnClick, removeFocusOnClick }) => {
             variant="link"
             className="ps-0 py-0 border-0 text-reset"
           >
-            <FaRegHeart size="24px" aria-label="Like" />
+            <FaRegHeart size="24px" aria-label="Like" role="img" />
           </Button>
         )
       }

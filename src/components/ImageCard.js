@@ -58,7 +58,6 @@ const AnimatedLikeButton = ({ liked, handleBtnClick, removeFocusOnClick }) => {
 
   return (
     <animated.div
-      onClick={handleBtnClick}
       style={{
         transform: spring.x
           .to({
@@ -68,28 +67,26 @@ const AnimatedLikeButton = ({ liked, handleBtnClick, removeFocusOnClick }) => {
           .to((x) => `scale(${x})`),
       }}
       children={
-        liked ? (
-          <Button
-            onMouseDown={removeFocusOnClick}
-            variant="link"
-            className="ps-0 py-0 border-0"
-          >
+        <Button
+          onClick={handleBtnClick}
+          onMouseDown={removeFocusOnClick}
+          variant="link"
+          role="button"
+          className={
+            liked ? "ps-0 py-0 border-0" : "ps-0 py-0 border-0 text-reset"
+          }
+        >
+          {liked ? (
             <FaHeart
               color="#ED4956"
               size="24px"
               aria-label="Unlike"
               role="img"
             />
-          </Button>
-        ) : (
-          <Button
-            onMouseDown={removeFocusOnClick}
-            variant="link"
-            className="ps-0 py-0 border-0 text-reset"
-          >
+          ) : (
             <FaRegHeart size="24px" aria-label="Like" role="img" />
-          </Button>
-        )
+          )}
+        </Button>
       }
     />
   );

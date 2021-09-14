@@ -39,6 +39,7 @@ const ImageCard = ({ image }) => {
         </Row>
         <Button
           onMouseDown={removeFocusOnClick}
+          role="button"
           variant="link"
           className="ps-0 py-0 border-0 text-decoration-none text-muted"
           onClick={toggleCollapse}

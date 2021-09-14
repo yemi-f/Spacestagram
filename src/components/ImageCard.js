@@ -7,7 +7,7 @@ const ImageCard = ({ image }) => {
   const [liked, setLiked] = useState(false);
   const [collapse, setCollapse] = useState(true);
 
-  const handleBtnClick = () => {
+  const toggleLike = () => {
     setLiked(!liked);
   };
 
@@ -26,11 +26,7 @@ const ImageCard = ({ image }) => {
       <Card.Img variant="top" src={image.url} aria-labelledby={image.url} />
       <Card.Body>
         <div className="d-flex justify-content-between mb-2">
-          <AnimatedLikeButton
-            liked={liked}
-            handleBtnClick={handleBtnClick}
-            removeFocusOnClick={removeFocusOnClick}
-          />
+          <AnimatedLikeButton liked={liked} toggleLike={toggleLike} />
           <div>
             <span>{image.date}</span>
           </div>
@@ -53,13 +49,13 @@ const ImageCard = ({ image }) => {
     </Card>
   );
 };
-const AnimatedLikeButton = ({ liked, handleBtnClick }) => {
+const AnimatedLikeButton = ({ liked, toggleLike }) => {
   const spring = useSpring({ x: liked ? 1 : 0 });
 
   return (
     <animated.button
       role="button"
-      onClick={handleBtnClick}
+      onClick={toggleLike}
       className={
         liked
           ? "ps-0 py-0 border-0 bg-transparent"

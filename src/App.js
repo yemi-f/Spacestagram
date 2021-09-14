@@ -18,9 +18,11 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Navbar bg="light" fixed="top">
-        <Container>
-          <Navbar.Brand href="/">Spacestagram</Navbar.Brand>
+      <Navbar bg="white border-bottom" fixed="top">
+        <Container className="px-md-0" style={{ maxWidth: "30rem" }}>
+          <Navbar.Brand href="/" className="fw-bold">
+            Spacestagram
+          </Navbar.Brand>
         </Container>
       </Navbar>
       <ImagesGrid />

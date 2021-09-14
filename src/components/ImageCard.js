@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Row } from "react-bootstrap";
+import { Card, Row, Button } from "react-bootstrap";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useSpring, animated } from "@react-spring/web";
 
@@ -15,6 +15,10 @@ const ImageCard = ({ image }) => {
     setCollapse(!collapse);
   };
 
+  const removeFocusOnClick = (event) => {
+    event.preventDefault();
+  };
+
   if (image.media_type !== "image") return null;
 
   return (
@@ -22,14 +26,11 @@ const ImageCard = ({ image }) => {
       <Card.Img variant="top" src={image.url} aria-labelledby={image.url} />
       <Card.Body>
         <div className="d-flex justify-content-between mb-2">
-          <div>
-            <span
-              onClick={() => handleBtnClick(image.url)}
-              style={{ cursor: "pointer" }}
-            >
-              <AnimatedLikeButton liked={liked} />
-            </span>
-          </div>
+          <AnimatedLikeButton
+            liked={liked}
+            handleBtnClick={handleBtnClick}
+            removeFocusOnClick={removeFocusOnClick}
+          />
           <div>
             <span>{image.date}</span>
           </div>
@@ -40,22 +41,24 @@ const ImageCard = ({ image }) => {
             {image.explanation}
           </div>
         </Row>
-        <Card.Text
-          className="text-muted"
+        <Button
+          onMouseDown={removeFocusOnClick}
+          variant="link"
+          className="ps-0 py-0 border-0 text-decoration-none text-muted"
           onClick={toggleCollapse}
-          style={{ cursor: "pointer" }}
         >
           {collapse ? "more" : "less"}
-        </Card.Text>
+        </Button>
       </Card.Body>
     </Card>
   );
 };
-const AnimatedLikeButton = ({ liked }) => {
+const AnimatedLikeButton = ({ liked, handleBtnClick, removeFocusOnClick }) => {
   const spring = useSpring({ x: liked ? 1 : 0 });
 
   return (
     <animated.div
+      onClick={handleBtnClick}
       style={{
         transform: spring.x
           .to({
@@ -66,9 +69,21 @@ const AnimatedLikeButton = ({ liked }) => {
       }}
       children={
         liked ? (
-          <FaHeart color="#ED4956" size="24px" />
+          <Button
+            onMouseDown={removeFocusOnClick}
+            variant="link"
+            className="ps-0 py-0 border-0"
+          >
+            <FaHeart color="#ED4956" size="24px" aria-label="Unlike" />
+          </Button>
         ) : (
-          <FaRegHeart size="24px" />
+          <Button
+            onMouseDown={removeFocusOnClick}
+            variant="link"
+            className="ps-0 py-0 border-0 text-reset"
+          >
+            <FaRegHeart size="24px" aria-label="Like" />
+          </Button>
         )
       }
     />

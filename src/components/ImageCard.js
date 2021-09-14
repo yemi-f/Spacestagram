@@ -8,10 +8,12 @@ const ImageCard = ({ image }) => {
   const [collapse, setCollapse] = useState(true);
 
   const handleBtnClick = () => {
+    console.log(123);
     setLiked(!liked);
   };
 
   const toggleCollapse = () => {
+    console.log(456);
     setCollapse(!collapse);
   };
 
@@ -53,11 +55,18 @@ const ImageCard = ({ image }) => {
     </Card>
   );
 };
-const AnimatedLikeButton = ({ liked, handleBtnClick, removeFocusOnClick }) => {
+const AnimatedLikeButton = ({ liked, handleBtnClick }) => {
   const spring = useSpring({ x: liked ? 1 : 0 });
 
   return (
-    <animated.div
+    <animated.button
+      role="button"
+      onClick={handleBtnClick}
+      className={
+        liked
+          ? "ps-0 py-0 border-0 bg-transparent"
+          : "ps-0 py-0 border-0 text-reset bg-transparent"
+      }
       style={{
         transform: spring.x
           .to({
@@ -66,29 +75,13 @@ const AnimatedLikeButton = ({ liked, handleBtnClick, removeFocusOnClick }) => {
           })
           .to((x) => `scale(${x})`),
       }}
-      children={
-        <Button
-          onClick={handleBtnClick}
-          onMouseDown={removeFocusOnClick}
-          variant="link"
-          role="button"
-          className={
-            liked ? "ps-0 py-0 border-0" : "ps-0 py-0 border-0 text-reset"
-          }
-        >
-          {liked ? (
-            <FaHeart
-              color="#ED4956"
-              size="24px"
-              aria-label="Unlike"
-              role="img"
-            />
-          ) : (
-            <FaRegHeart size="24px" aria-label="Like" role="img" />
-          )}
-        </Button>
-      }
-    />
+    >
+      {liked ? (
+        <FaHeart color="#ED4956" size="24px" aria-label="Unlike" role="img" />
+      ) : (
+        <FaRegHeart size="24px" aria-label="Like" role="img" />
+      )}
+    </animated.button>
   );
 };
 

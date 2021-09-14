@@ -8,12 +8,10 @@ const ImageCard = ({ image }) => {
   const [collapse, setCollapse] = useState(true);
 
   const handleBtnClick = () => {
-    console.log(123);
     setLiked(!liked);
   };
 
   const toggleCollapse = () => {
-    console.log(456);
     setCollapse(!collapse);
   };
 

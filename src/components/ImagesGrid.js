@@ -28,7 +28,7 @@ const ImagesGrid = () => {
   );
 
   return (
-    <Container>
+    <Container role="main">
       {status === "loading" ? (
         <LoadingSpinner />
       ) : status === "error" ? (

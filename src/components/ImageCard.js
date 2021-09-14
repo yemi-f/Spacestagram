@@ -22,7 +22,7 @@ const ImageCard = ({ image }) => {
   if (image.media_type !== "image") return null;
 
   return (
-    <Card style={{ maxWidth: "30rem" }} className="mb-3 mx-auto">
+    <Card style={{ maxWidth: "30rem" }} className="mb-3 mx-auto" role="article">
       <Card.Img variant="top" src={image.url} aria-labelledby={image.url} />
       <Card.Body>
         <div className="d-flex justify-content-between mb-2">

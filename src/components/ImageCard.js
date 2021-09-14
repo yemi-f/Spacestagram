@@ -19,7 +19,7 @@ const ImageCard = ({ image }) => {
 
   return (
     <Card style={{ maxWidth: "30rem" }} className="mb-3 mx-auto">
-      <Card.Img variant="top" src={image.url} />
+      <Card.Img variant="top" src={image.url} aria-labelledby={image.url} />
       <Card.Body>
         <div className="d-flex justify-content-between mb-2">
           <div>
@@ -36,7 +36,7 @@ const ImageCard = ({ image }) => {
         </div>
         <Card.Title className="h6">{image.title}</Card.Title>
         <Row>
-          <div className={collapse ? "text-truncate" : ""}>
+          <div className={collapse ? "text-truncate" : ""} id={image.url}>
             {image.explanation}
           </div>
         </Row>

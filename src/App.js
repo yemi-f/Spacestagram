@@ -20,9 +20,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Navbar bg="light" fixed="top">
         <Container>
-          <Navbar.Brand href="/" tabIndex="0">
-            Spacestagram
-          </Navbar.Brand>
+          <Navbar.Brand href="/">Spacestagram</Navbar.Brand>
         </Container>
       </Navbar>
       <ImagesGrid />

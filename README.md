@@ -1,4 +1,22 @@
-# Getting Started with Create React App
+# Spacestagram
+## Description
+The app displays images from NASA's [Astronomy Picture of the Day API](https://api.nasa.gov#apod) and allows users to *like* and *unlike* images.
+
+Built with [ReactJS](https://reactjs.org/) 
+
+## Extras
+- animated *like* and *unlike* action
+- loading spinner while fetching data
+
+# Live Demo
+
+https://mystifying-nightingale-889216.netlify.app/
+
+# Setup
+- get a free API key from **[https://api.nasa.gov](https://api.nasa.gov)**
+- Create a .env file in the root folder with `REACT_APP_API_KEY=yourAPIKey`
+where `yourAPIKey` is your API key
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
